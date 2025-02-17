@@ -1,9 +1,10 @@
-import { UserInsertSchema } from "src/schema/user.schema";
+import { UserInsertSchema } from "../../schema/user.schema";
 import { db } from "../../db";
 import bcrypt from "bcrypt";
 
 export const findUserByEmail = async (email: string) => {
   return await db.user.findUnique({
+    select: { id: true, password: true },
     where: { email },
   });
 };

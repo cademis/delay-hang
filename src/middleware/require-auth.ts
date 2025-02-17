@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import { NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
-import { findRefreshTokenById } from "src/api/auth/auth.services";
+import { findRefreshTokenById } from "../api/auth/auth.services";
 dotenv.config();
 
 const requireAuth = async (req: Request, res: Response, next: NextFunction) => {

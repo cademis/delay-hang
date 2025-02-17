@@ -1,7 +1,7 @@
 import express from "express";
 import { authRouter } from "./auth/auth.routes";
 import { usersRouter } from "./users/users.routes";
-import { workoutRouter } from "src/api/workouts/workout.routes";
+import { workoutRouter } from "./workouts/workout.routes";
 
 const apiRouter = express.Router();
 

@@ -1,10 +1,9 @@
 import express from "express";
-import { db } from "src/db";
-import requireAuth from "src/middleware/require-auth";
-import { validate } from "src/middleware/validate";
-import { validateResource } from "src/middleware/validateResource";
-import { userSchema } from "src/schema/user.schema";
-import { workoutSchema } from "src/schema/workout.schema";
+import { db } from "../../db";
+import requireAuth from "../../middleware/require-auth";
+import { validate } from "../../middleware/validate";
+import { validateResource } from "../../middleware/validateResource";
+import { workoutSchema } from "../../schema/workout.schema";
 import { z } from "zod";
 
 const router = express.Router();
@@ -39,7 +38,7 @@ router.put(
   "/:id",
   validate(workoutSchema.omit({ id: true, userId: true })),
   async (req, res) => {
-    const workout = await db.workout.update({
+    await db.workout.update({
       where: {
         id: req.params.id as unknown as number,
         userId: req.user!.userId,
