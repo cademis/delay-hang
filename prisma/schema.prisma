@@ -8,10 +8,11 @@ generator client {
 }
 
 model User {
-  id            Int            @id @default(autoincrement())
+  id            Int      @id @default(autoincrement())
   email         String   @unique      
   password      String         
   refreshTokens RefreshToken[]
+  workouts      Workout[]
 }
 
 model RefreshToken {
@@ -22,4 +23,12 @@ model RefreshToken {
   revoked     Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Workout {
+  id        Int      @id @default(autoincrement())
+  name      String
+  notes     String?
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

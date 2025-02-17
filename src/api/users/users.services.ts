@@ -1,4 +1,4 @@
-import { UserInsertSchema } from "src/lib/schema";
+import { UserInsertSchema } from "src/schema/user.schema";
 import { db } from "../../db";
 import bcrypt from "bcrypt";
 

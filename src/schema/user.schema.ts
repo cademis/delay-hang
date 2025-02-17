@@ -2,7 +2,7 @@ import { z } from "zod";
 import { User } from "@prisma/client";
 
 export const userSchema = z.object({
-  id: z.number(),
+  id: z.coerce.number(),
   email: z.string(),
   password: z.string(),
 });

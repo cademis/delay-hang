@@ -1,7 +1,5 @@
 
 
-GET http://localhost:3000/api/users
-
 ###
 
 POST http://localhost:3000/api/auth/signup
@@ -21,3 +19,46 @@ Content-Type: application/json
     "email": "test@test.com",
     "password": "test"
 }
+
+### get current user info
+GET http://localhost:3000/api/users/2
+
+###
+
+GET http://localhost:3000/api/workouts
+
+
+###
+
+POST http://localhost:3000/api/workouts
+Content-Type: application/json
+
+{
+    "name": "test"  
+}
+
+###
+
+POST http://localhost:3000/api/workouts
+Content-Type: application/json
+
+{
+    "name": "test",
+    "notes": "test notes" 
+}
+
+###
+
+PUT http://localhost:3000/api/workouts/1
+Content-Type: application/json
+
+{
+    "notes": "test notes" 
+}
+
+### delete a workout
+
+DELETE http://localhost:3000/api/workouts/1
+
+
+

@@ -1,10 +1,8 @@
-import express, { NextFunction, Request, Response } from "express";
+import express from "express";
 import jwt, { Secret, JwtPayload } from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { UserInsertSchema, userInsertSchema } from "../../lib/schema";
+import { UserInsertSchema, userInsertSchema } from "../../schema/user.schema";
 import * as dotenv from "dotenv";
-
-import { ZodError, ZodSchema } from "zod";
 import { v4 as uuidv4 } from "uuid";
 
 import {
@@ -21,25 +19,12 @@ import {
   sendRefreshToken,
   userExists,
 } from "../auth/auth.services";
+import { validate } from "../../middleware/validate";
 dotenv.config();
 
 const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET as Secret;
 
 const router = express.Router();
-
-const validate =
-  (schema: ZodSchema) => (req: Request, res: Response, next: NextFunction) => {
-    try {
-      schema.parse(req.body);
-      next();
-      return;
-    } catch (error) {
-      if (error instanceof ZodError) {
-        return res.status(400).json({ errors: error.errors });
-      }
-      return res.status(500).json({ error: "Internal Server Error" });
-    }
-  };
 
 router.post("/signup", validate(userInsertSchema), async (req, res) => {
   const { email, password } = req.body as UserInsertSchema;

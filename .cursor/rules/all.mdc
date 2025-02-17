@@ -1,0 +1,9 @@
+---
+description: 
+globs: 
+---
+
+# Your rule content
+
+- [schema.prisma](mdc:prisma/schema.prisma)
+
