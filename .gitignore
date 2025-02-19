@@ -2,3 +2,9 @@ node_modules
 dist
 # Keep environment variables out of version control
 .env
+
+# .db files
+*.db
+*.db-journal
+*.db-shm
+*.db-wal

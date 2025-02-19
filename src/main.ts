@@ -3,6 +3,7 @@ import { apiRouter } from "./api";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import dotenv from "dotenv";
+import swaggerDocs from "./utils/swagger";
 
 dotenv.config();
 
@@ -13,6 +14,7 @@ app.use(cors());
 
 app.use("/api", apiRouter);
 
-app.listen(process.env.PORT, () =>
-  console.log(`listening on http://localhost:${process.env.PORT}`)
-);
+app.listen(process.env.PORT, () => {
+  console.log(`listening on http://localhost:${process.env.PORT}`);
+  swaggerDocs(app, Number(process.env.PORT));
+});

@@ -47,6 +47,32 @@ router.post("/signup", validate(userInsertSchema), async (req, res) => {
   return res.status(200).json({ message: "Signup successful", accessToken });
 });
 
+/**
+ * @openapi
+ * /api/auth/signin:
+ *  post:
+ *    tags:
+ *      - Auth
+ *    summary: Signin
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              email:
+ *                type: string
+ *                example: test@test.com
+ *              password:
+ *                type: string
+ *                example: test
+ *    responses:
+ *      "200":
+ *        description: success
+ *      "400":
+ *        description: Bad Request
+ */
 router.post("/signin", validate(userInsertSchema), async (req, res) => {
   const { email, password } = req.body as UserInsertSchema;
 

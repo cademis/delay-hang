@@ -6,6 +6,15 @@ dotenv.config();
 
 const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
   try {
+    // First, check for an Authorization header
+    const authHeader = req.headers.authorization;
+    if (authHeader && authHeader.startsWith("Bearer ")) {
+      const accessToken = authHeader.split(" ")[1];
+      const decoded = jwt.verify(accessToken, process.env.JWT_ACCESS_SECRET!);
+      req.user = { userId: (decoded as any).userId };
+      return next();
+    }
+
     // Get the token from the cookie
     const token = req.cookies.refresh_token;
     if (!token) {

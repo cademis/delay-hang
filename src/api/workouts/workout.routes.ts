@@ -10,6 +10,22 @@ const router = express.Router();
 
 router.use(requireAuth); // all routes require authentication
 
+/**
+ * @openapi
+ * /api/workouts:
+ *  get:
+ *    tags:
+ *      - Workouts
+ *    description: Get all workouts
+ *    summary: Get all workouts
+ *    security:
+ *      - bearerAuth: []
+ *    responses:
+ *      "200":
+ *        description: success
+ *      "401":
+ *        description: Unauthorized
+ */
 router.get("/", async (req, res) => {
   const workouts = await db.workout.findMany({
     where: {
